@@ -2,6 +2,8 @@ import express from "express"
 import dotenv from "dotenv"
 import conn from "./db.js"
 import authRoute from "./routers/AuthRoute.js"
+import userRoute from "./routers/UserRoute.js"
+
 
 const app=express()
 dotenv.config()
@@ -13,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth",authRoute)
+app.use("/user",userRoute)
 
 app.listen(PORT,()=>{
     console.log(`Sunucu ${PORT} portunda çalışmaya başladı.`)

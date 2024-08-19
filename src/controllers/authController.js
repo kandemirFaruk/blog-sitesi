@@ -6,7 +6,6 @@ const createUser = async (req, res) => {
     const user = req.body;
 
     const existingUser = await User.findOne({ userName: user.userName });
-    console.log(existingUser);
     if (existingUser) {
       return res
         .status(409)
@@ -31,7 +30,6 @@ const userLogin = async (req, res) => {
     const {userName,password} = req.body;
     const existingUser = await User.findOne({userName:userName});
 
-    console.log(existingUser)
     if (existingUser) {
       const isValidPassword = await bcrypt.compare(password, existingUser.password);
       console.log("Şifre Kontrolü",isValidPassword)
