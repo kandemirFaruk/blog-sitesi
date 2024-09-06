@@ -1,9 +1,18 @@
 import express from "express";
-import * as authController from "../controllers/authController.js"
+import * as authController from "../controllers/authController.js";
 
-const router =express.Router()
+const router = express.Router();
 
-router.route("/signup").post(authController.createUser)
-router.route("/signin").post(authController.userLogin)
+// Kullanıcı oluşturma
+router.route("/signup").post(authController.createUser);
 
-export default router
+// Kullanıcı giriş
+router.route("/signin").post(authController.userLogin);
+
+// Şifre sıfırlama talebi
+router.route("/forgot-password").post(authController.forgotPassword);
+
+// Şifre sıfırlama işlemi
+router.route("/reset-password/:token").post(authController.resetPassword);
+
+export default router;
